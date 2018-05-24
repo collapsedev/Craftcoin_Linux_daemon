@@ -1,3 +1,7 @@
+Web
+===============
+https://bitcointalk.org/index.php?topic=250343.0
+
 CraftCoin (CRC)
 ===============
 
