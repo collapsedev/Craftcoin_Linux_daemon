@@ -699,8 +699,10 @@ bool CTxDB::LoadBlockIndexGuts()
             CDiskBlockIndex diskindex;
             ssValue >> diskindex;
 
+            uint256 diskindexblockhash = diskindex.GetBlockHash();
+            
             // Construct block index object
-            CBlockIndex* pindexNew = InsertBlockIndex(diskindex.GetBlockHash());
+            CBlockIndex* pindexNew = InsertBlockIndex(diskindexblockhash);
             pindexNew->pprev          = InsertBlockIndex(diskindex.hashPrev);
             pindexNew->pnext          = InsertBlockIndex(diskindex.hashNext);
             pindexNew->nFile          = diskindex.nFile;
@@ -713,7 +715,7 @@ bool CTxDB::LoadBlockIndexGuts()
             pindexNew->nNonce         = diskindex.nNonce;
 
             // Watch for genesis block
-            if (pindexGenesisBlock == NULL && diskindex.GetBlockHash() == hashGenesisBlock)
+            if (pindexGenesisBlock == NULL && diskindexblockhash == hashGenesisBlock)
                 pindexGenesisBlock = pindexNew;
 
             if (!pindexNew->CheckIndex())
