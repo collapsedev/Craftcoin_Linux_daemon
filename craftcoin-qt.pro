@@ -24,6 +24,11 @@ OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
 
+#Force compatible BigNum OpenSSL 1.0.X.
+#Comment lines if your system has compatible version. 
+OPENSSL_INCLUDE_PATH=/usr/local/ssl/include
+OPENSSL_LIB_PATH=/usr/local/ssl/lib
+
 # use: qmake "RELEASE=1"
 contains(RELEASE, 1) {
     # Mac: compile for maximum compatibility (10.5, 32-bit)
